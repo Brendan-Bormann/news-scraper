@@ -21,5 +21,5 @@ var routes = require('./routes/router.js');
 
 app.use('/', routes);
 
-var port = 8080;
+var port = process.env.PORT || 8080;
 app.listen(port, () => console.log('News-Scraper listening on port ' + port + "."));
