@@ -45,8 +45,6 @@
 				var name = $("#name").val();
 				var comment = $("#textarea").val();
 
-				alert(`Id is : ${id}. \nUsername is ${name}.`);
-
 				$.ajax({
 					type: "POST",
 					url: "/data/post/" + id,
@@ -57,8 +55,7 @@
 					}
 				}).then(
 				function() {
-					console.log("AJAX request sent.");
-					alert("Thank you for commenting, " + name + ".");
+					location.reload();
 				});
 			});
 		});

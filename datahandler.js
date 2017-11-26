@@ -11,7 +11,8 @@ const mongojs = require('mongojs');
 // });
 
 // mongodb
-var db = mongojs('newsScrape', ['articles', 'comments']);
+var db = mongojs('newsScrape', ['articles']);
+var db2 = mongojs('newsScrape', ['comments']);
 var ObjectId = mongojs.ObjectId;
 
 var dataHandler = {
@@ -19,7 +20,6 @@ var dataHandler = {
 	update: function(cb) {
 		request('https://www.theguardian.com/us/technology', function (error, response, html) {
 			if (!error && response.statusCode == 200) {
-				console.log('Request successful! Updating database...');
 
 				var $ = cheerio.load(html);
 
@@ -49,7 +49,6 @@ var dataHandler = {
 			} else {
 				console.log("Error : " + error);
 			}
-			console.log("Finished data request!");
 			console.log(`Found [${counter2}] valid articles out of [${counter1}] possible that were found.`);
 		});
 	},
@@ -61,7 +60,6 @@ var dataHandler = {
 	},
 
 	retrieveOne: function(id, cb) {
-		console.log('ObjectId("' + id + '")');
 		db.articles.findOne({"_id": ObjectId(id)}, function(err, result) {
 			if (err) throw err;
 			cb(result);
@@ -80,7 +78,7 @@ var dataHandler = {
 	},
 
 	findComments: function(id, cb) {
-		db.collection('comments').find({"article_id": ObjectId(id)}, function(err, result) {
+		db2.comments.find({"article_id": id}, function(err, result) {
 			if (err) throw err;
 			cb(result);
 		});
