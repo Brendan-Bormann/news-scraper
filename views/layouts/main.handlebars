@@ -1,12 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>News Scraper</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Tech News</title>
+
+	<!-- Materialize CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+	<!-- My CSS -->
+	<link rel="stylesheet" href="../../public/style.css">
+
 </head>
 <body>
 
-    {{{body}}}
+	<nav>
+		<div class="nav-wrapper">
+			<a href="/" class="brand-logo center">Tech News</a>
+		</div>
+	</nav>
 
+	<div class="container">
+
+	{{{body}}}
+
+	</div>
+
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+	</script>
+
+	<!-- materialize js cdn -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+	<script>
+		$(function() {
+			$("#post").on("click", function() {
+				var url = window.location.pathname.split("/");
+				var urlEnd = url.length - 1;
+				var id = url[urlEnd];
+
+				var name = $("#name").val();
+				var comment = $("#textarea").val();
+
+				alert(`Id is : ${id}. \nUsername is ${name}.`);
+
+				$.ajax({
+					type: "POST",
+					url: "/data/post/" + id,
+					data: {
+						id: id,
+						name: name,
+						comment: comment,
+					}
+				}).then(
+				function() {
+					console.log("AJAX request sent.");
+					alert("Thank you for commenting, " + name + ".");
+				});
+			});
+		});
+	</script>
 </body>
 </html>

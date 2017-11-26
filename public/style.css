@@ -1,0 +1,18 @@
+body {
+	background-color: #CFCFCF;
+}
+
+.nav-wrapper {
+	background-color: #2196f3;
+}
+
+#comments {
+	background-color: #FFFFFF;
+	border: #2196f3 solid 5px;
+	border-radius: 10px;
+	padding: 45px;
+}
+
+.comment-title {
+	margin-left: 30px;
+}

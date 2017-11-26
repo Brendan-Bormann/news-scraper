@@ -1,10 +1,23 @@
-    <!-- Uses built-in `if` helper. -->
-    {{#if success}}
-    <h1>News!</h1>
-    {{/if}}
-
-    <!-- Calls `foo` helper, overridden at render-level. -->
-    <p>{{foo}}</p>
-
-    <!-- Calls `bar` helper, defined at instance-level. -->
-    <p>{{bar}}</p>
+<br/>
+<div class="row">
+{{#each data}}
+	<div class="col s4 m4">
+		<div class="card">
+			<div class="card-image">
+				<img src="{{this.image}}">
+			</div>
+			<div class="card-content">
+				<p>{{this.headline}}</p>
+			</div>
+			<div class="card-action">
+				<a href="{{this.link}}">Link</a>
+				<a href="/data/comments/{{this._id}}" class="comments">Comments</a>
+			</div>
+		</div>
+	</div>
+	{{#if this.row}}
+	</div>
+	<div class="row">
+	{{/if}}
+{{/each}}
+</div>
