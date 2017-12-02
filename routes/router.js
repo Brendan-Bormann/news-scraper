@@ -1,7 +1,6 @@
 const express     = require('express');
 const dataHandler = require('../datahandler.js');
 
-
 // express
 var router = express.Router();
 
@@ -9,7 +8,6 @@ var router = express.Router();
 router.get('/', function(req, res) {
 
 	// On home load, get new articles and load them into main page
-
 
 	dataHandler.update(function(response) {
 		if (response === true) {
@@ -41,6 +39,9 @@ router.post("/data/post/:id", function(req, res) {
 });
 
 router.get("/data/comments/:id", function(req, res) {
+
+	// on comment request, get article and all comments with the article id and load them
+
 	var id = req.params.id;
 
 	var content = {};
@@ -49,6 +50,7 @@ router.get("/data/comments/:id", function(req, res) {
 		content.article = response;
 
 		dataHandler.findComments(id, (response) => {
+			content.comments = response;
 			displayComments();
 		});
 	});
