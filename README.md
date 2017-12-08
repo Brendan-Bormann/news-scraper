@@ -1,6 +1,9 @@
 # news-scraper
 Pulls data from new sites and allows users to view and comment on them
 
+Check it out here:
+https://evening-ocean-82553.herokuapp.com/
+
 
 All the News That's Fit to Scrape
 
